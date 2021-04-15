@@ -1,5 +1,0 @@
-sudoku:
-https://stackoverflow.com/questions/45471152/how-to-create-a-sudoku-puzzle-in-python
-
-boids:
-https://alan-turing-institute.github.io/rsd-engineeringcourse/ch01data/084Boids.html
