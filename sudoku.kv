@@ -1,0 +1,14 @@
+<Sudoku>:
+    cols: 1
+    widget_board: widget_board
+
+    GridLayout:
+        id: widget_board
+        cols: self.parent.config_dict['Tasks']['Sudoku']['base_size']**2 + self.parent.config_dict['Tasks']['Sudoku']['base_size'] - 1
+        rows: self.parent.config_dict['Tasks']['Sudoku']['base_size']**2 + self.parent.config_dict['Tasks']['Sudoku']['base_size'] - 1
+
+    Button:
+        text: 'Check solution'
+        size_hint: 0.1, None
+        on_release:
+            self.text = self.parent.check_solution()

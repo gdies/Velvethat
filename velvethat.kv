@@ -1,0 +1,412 @@
+# Dependencies
+#:include number_guess.kv
+#:include sudoku.kv
+#:include boids.kv
+#:include arithmetics.kv
+#:include rps.kv
+#:include hangman.kv
+#:include log.kv
+#:include typewriter.kv
+#:include minesweeper.kv
+
+# ScreenManager
+VelvetHat_ScreenManager:
+    Main_Screen:
+    Market_Screen:
+    Game_Screen:
+
+# Popups
+<RewardPopup>:
+    Label:
+        text: ''
+
+# Screens
+<Main_Screen>:
+    name: 'Main_Screen'
+    currency_1: currency_1
+    currency_2: currency_2
+    currency_3: currency_3
+
+    GridLayout:
+        size: root.width, root.height
+        cols: 1
+
+        Label:
+            text: 'Earn Beaver Whiskers by doing the tasks so you can purchase all the Rewards.'
+
+        GridLayout:
+            cols: 3
+
+            GridLayout:
+                cols: 1
+
+                Button:
+                    task_id: 1
+                    text: 'Task 1'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+                Button:
+                    task_id: 4
+                    text: 'Task 4'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+                Button:
+                    task_id: 7
+                    text: 'Task 7'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+            GridLayout:
+                cols: 1
+
+                Button:
+                    task_id: 2
+                    text: 'Task 2'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+                Button:
+                    task_id: 5
+                    text: 'Task 5'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+                Button:
+                    task_id: 8
+                    text: 'Task 8'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+            GridLayout:
+                cols: 1
+
+                Button:
+                    task_id: 3
+                    text: 'Task 3'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+                Button:
+                    task_id: 6
+                    text: 'Task 6'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+                Button:
+                    task_id: 9
+                    text: 'Task 9'
+                    on_release:
+                        app.root.current = 'Game_Screen'
+                        root.manager.transition.direction = 'right'
+                        root.manager.get_screen('Game_Screen').start_task(task_id = self.task_id)
+                        root.manager.game.task_manager.open_task(id = self.task_id-1)
+
+
+        GridLayout:
+            cols: 3
+
+            GridLayout:
+                cols: 1
+
+                Label:
+                    text: 'Assets'
+
+                GridLayout:
+                    cols: 2
+
+                    GridLayout:
+                        cols: 1
+
+                        Label:
+                            text: str(root.manager.config_dict['Main_Screen']['Currencies']['BW'][0]) + ':'
+
+                        Label:
+                            text: str(root.manager.config_dict['Main_Screen']['Currencies']['HHS'][0]) + ':'
+
+                        Label:
+                            text: str(root.manager.config_dict['Main_Screen']['Currencies']['JDF'][0]) + ':'
+
+                    GridLayout:
+                        cols: 1
+
+                        Label:
+                            id: currency_1
+                            text: '{:.3f}'.format(root.manager.game.wallet.currency_dict[1])
+
+                        Label:
+                            id: currency_2
+                            text: '{:.3f}'.format(root.manager.game.wallet.currency_dict[2])
+
+                        Label:
+                            id: currency_3
+                            text: '{:.3f}'.format(root.manager.game.wallet.currency_dict[3])
+
+            GridLayout:
+                cols: 1
+
+                Label:
+                    text: 'Rewards'
+
+                GridLayout:
+                    cols: 3
+
+                    GridLayout:
+                        cols: 1
+
+                        RewardButton:
+                            prize_id: 1
+                            text: 'Buy Reward 1:\n' + self.clean_string(text=str({key:val for key,val in self.reward_text_dict[self.prize_id].items() if val > 0}), characters="}{'").replace(',', '\n')
+                            text_size: self.size
+                            font_size: 12
+                            halign: 'center'
+                            valign: 'center'
+                            on_release:
+                                self.give_reward()
+
+                    GridLayout:
+                        cols: 1
+
+                        RewardButton:
+                            prize_id: 2
+                            text: 'Buy Reward 2:\n' + self.clean_string(text=str({key:val for key,val in self.reward_text_dict[self.prize_id].items() if val > 0}), characters="}{'").replace(',', '\n')
+                            text_size: self.size
+                            font_size: 12
+                            halign: 'center'
+                            valign: 'center'
+                            on_release:
+                                self.give_reward()
+
+                    GridLayout:
+                        cols: 1
+
+                        RewardButton:
+                            prize_id: 3
+                            text: 'Buy Reward 3:\n' + self.clean_string(text=str({key:val for key,val in self.reward_text_dict[self.prize_id].items() if val > 0}), characters="}{'").replace(',', '\n')
+                            text_size: self.size
+                            font_size: 12
+                            halign: 'center'
+                            valign: 'center'
+                            on_release:
+                                self.give_reward()
+
+            GridLayout:
+                cols: 1
+
+                Button:
+                    text: 'To The Exchange Market'
+                    on_release:
+                        app.root.current = 'Market_Screen'
+                        root.manager.transition.direction = 'left'
+                        root.manager.get_screen('Market_Screen').update_on(on=True)
+
+<Market_Screen>:
+    name: 'Market_Screen'
+    option_list: option_list
+    buy_currency: buy_currency
+    sell_currency: sell_currency
+    buy_amount: buy_amount
+    sell_amount: sell_amount
+    on_market_state:
+        exchange_graph.update_plot(prices=root.manager.game.exchange.price_history)
+        rate_1.text = '{:.3f}'.format(root.manager.game.exchange.price_vector[1]/root.manager.game.exchange.price_vector[0])
+        rate_2.text = '{:.3f}'.format(root.manager.game.exchange.price_vector[2]/root.manager.game.exchange.price_vector[0])
+#        root.manager.get_screen('Main_Screen').currency_1.text = '{:.3f}'.format(root.manager.game.wallet.currency_dict[1])
+#        root.manager.get_screen('Main_Screen').currency_2.text = '{:.3f}'.format(root.manager.game.wallet.currency_dict[2])
+#        root.manager.get_screen('Main_Screen').currency_3.text = '{:.3f}'.format(root.manager.game.wallet.currency_dict[3])
+
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: 'Exchange currencies'
+            size_hint: 1, 0.1
+            size: self.texture_size
+
+        GridLayout:
+            cols: 2
+
+            GridLayout:
+                cols: 1
+
+                GridLayout:
+                    cols: 2
+                    size_hint: 0.1, None
+
+                    Label:
+                        text: 'BW/HHS: '
+                        color: 1,0,0,1
+
+                    Label:
+                        id: rate_1
+                        text: '{:.3f}'.format(root.manager.game.exchange.rates[1])
+                        color: 1,0,0,1
+
+                GridLayout:
+                    cols: 2
+                    size_hint: 0.1, None
+
+                    Label:
+                        text: 'BW/JDF: '
+                        color: 0,1,0,1
+
+                    Label:
+                        id: rate_2
+                        text: '{:.3f}'.format(root.manager.game.exchange.rates[2])
+                        color: 0,1,0,1
+
+                ScrollView:
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    size_hint: 1, 1
+
+                    GridLayout:
+                        id: option_list
+                        size_hint: 1, len(self.children)/5
+                        cols: 1
+
+
+            GridLayout:
+                cols: 1
+
+                ExchangeGraph:
+                    id: exchange_graph
+                    xlabel: ''
+                    ylabel: 'Exchange Rates'
+                    y_ticks_major: 1
+                    y_grid_label: True
+                    x_grid_label: False
+                    padding: 5
+                    x_grid: True
+                    y_grid: True
+                    xmin: 0
+                    xmax: self.config_dict['Exchange']['price_history_length'] -1
+                    ymin: -0
+                    ymax: 10
+                    make_plots: self.make_plot(prices=root.manager.game.exchange.price_history)
+
+        GridLayout:
+            cols: 2
+            size_hint: 0.1, None
+
+            Button:
+                pos_hint: {'center_x': 0, 'center_y': 0}
+                text: 'To Menu'
+                on_release:
+                    app.root.current = 'Main_Screen'
+                    root.manager.transition.direction = 'right'
+                    root.update_on(on=False)
+
+            GridLayout:
+                cols: 4
+
+                GridLayout:
+                    cols: 1
+
+                    Label:
+                        text: 'Convert from:'
+
+                    Label:
+                        text: 'Convert to:'
+
+                GridLayout:
+                    cols: 1
+
+                    TextInput:
+                        id: sell_amount
+                        multiline: False
+                        input_filter: 'float'
+                        hint_text: '0.000'
+                        on_text_validate:
+                            root.update_converted_amount(buy_sell = 'buy')
+                            #buy_amount.text = '{:.3f}'.format(float(sell_amount.text)*root.manager.game.exchange.get_rate(c1=root.manager.config_dict['Main_Screen']['Currencies'][sell_currency.text][1]-1, c2=root.manager.config_dict['Main_Screen']['Currencies'][buy_currency.text][1]-1)) if sell_amount.text else '0'
+
+                    TextInput:
+                        id: buy_amount
+                        multiline: False
+                        input_filter: 'float'
+                        hint_text: '0.000'
+                        on_text_validate:
+                            root.update_converted_amount(buy_sell = 'sell')
+                            #sell_amount.text = '{:.3f}'.format(float(buy_amount.text)*root.manager.game.exchange.get_rate(c1=root.manager.config_dict['Main_Screen']['Currencies'][buy_currency.text][1]-1, c2=root.manager.config_dict['Main_Screen']['Currencies'][sell_currency.text][1]-1)) if buy_amount.text else '0'
+
+                GridLayout:
+                    cols: 1
+
+                    Button:
+                        id: sell_currency
+                        text: list(root.manager.config_dict['Main_Screen']['Currencies'].keys())[0]
+                        on_release:
+                            self.text = root.currency_conversion_dict[self.text]
+
+                    Button:
+                        id: buy_currency
+                        text: list(root.manager.config_dict['Main_Screen']['Currencies'].keys())[0]
+                        on_release:
+                            self.text = root.currency_conversion_dict[self.text]
+
+                GridLayout:
+                    cols: 1
+
+                    ConvertButton:
+                        text: 'Convert'
+                        on_release:
+                            self.use_button()
+
+
+<Game_Screen>:
+    name: 'Game_Screen'
+    task: task
+
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            id: task
+            cols: 1
+
+        GridLayout:
+            cols: 2
+            size_hint: 0.1, None
+
+            Button:
+                text: 'New'
+                background_color: 1, 1, 1, .7
+                on_release:
+                    root.start_task(task_id=root.task.children[0].task_id)
+
+            Button:
+                text: 'Leave'
+                background_color: 1, 1, 1, .7
+                on_release:
+                    app.root.current  = 'Main_Screen'
+                    root.manager.transition.direction = 'left'
+                    root.remove_task()
+                    root.manager.game.task_manager.close_tasks()
+                    root.manager.get_screen('Main_Screen').schedule_payment()

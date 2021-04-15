@@ -1,0 +1,34 @@
+<Typewriter>:
+    cols: 1
+    size_hint: 1, 1
+    word_input: word_input
+    word_layout: word_layout
+    result_label: result_label
+
+    FloatLayout:
+        id: word_layout
+        size_hint: None, 1
+        canvas:
+            Color:
+                rgba: .5, 0, .2, .8
+            Rectangle:
+                pos: 0, self.y
+                size: self.parent.width, 5
+
+    GridLayout:
+        cols: 2
+        size_hint: 1, 0.1
+
+        TextInput:
+            id: word_input
+            hint_text: 'Type a word here, press Enter to make it disappear.'
+            multiline: False
+            focus: True
+            on_text_validate:
+                self.parent.parent.check_input(input_word = self.text)
+                self.text = ''
+                self.parent.parent.schedule_focus()
+
+        Label:
+            id: result_label
+            text: 'Eliminated: 0    Missed: 0    Time elapsed: 0 s'

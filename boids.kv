@@ -1,0 +1,12 @@
+<Boid>:
+    size_hint: None, None
+    size: self.config_dict['Tasks']['Boids']['boid_size']
+    canvas:
+        Color:
+            rgba: .7, 0, .4, .8
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<Boids>:
+    size_hint: 1, 1

@@ -1,0 +1,23 @@
+<Minesweeper>:
+    cols: 1
+    tile_layout: tile_layout
+    info_label: info_label
+    time_label: time_label
+
+    GridLayout:
+        id: tile_layout
+        cols: self.parent.base_size
+        rows: self.parent.base_size
+
+    GridLayout:
+        cols: 2
+        size_hint: 1, 0.1
+
+        Label:
+            id: info_label
+            text: 'Are you worthy enough to win?'
+
+
+        Label:
+            id: time_label
+            text: 'Elapsed time: 0 s'

@@ -1,0 +1,36 @@
+<NumberGuess>:
+    cols: 1
+    hint: hint
+    guess_counter: guess_counter
+    text_input: text_input
+
+    Label:
+        text: 'Guess the number I have generated.'
+
+    GridLayout:
+        size_hint: 1, 0.1
+        cols: 2
+
+        TextInput:
+            id: text_input
+            hint_text: 'type a number here, press Enter to check if correct.'
+            input_filter: 'int'
+            multiline: False
+            focus: True
+            on_text_validate:
+                hint.text = self.parent.parent.hint_text(input=int(self.text)) if self.text else ''
+                self.parent.parent.guess_count += 1
+                guess_counter.text = 'Guess count: ' + str(self.parent.parent.guess_count)
+                self.text = ''
+                self.parent.parent.schedule_focus()
+
+        GridLayout:
+            cols: 1
+
+            Label:
+                id: hint
+                text: ''
+
+            Label:
+                id: guess_counter
+                text: ''

@@ -1,0 +1,95 @@
+{
+  "Task":{
+    "wage_decay_factor":2,
+    "minimum_wage":3
+  },
+  "Tasks":{
+    "NumberGuess":{
+      "task_id":1,
+      "max_number":100
+    },
+    "Sudoku":{
+      "task_id":2,
+      "base_size":3,
+      "empty_rate":0.3
+    },
+    "Boids":{
+      "task_id":3,
+      "max_boids":121,
+      "boid_size": [8, 8],
+      "velocity_limits":[-0.1, -0.1, 0.1, 0.1],
+      "goal_strength":0.0000000001,
+      "cohesion_strength":0.015,
+      "alert_distance":10,
+      "formation_distance":0.001,
+      "formation_strength":10,
+      "velocity_coefficient":0.05,
+      "update_frequency":60.0
+    },
+    "Arithmetics":{
+      "task_id":4,
+      "digits":2
+    },
+    "RPS":{
+      "task_id":5,
+      "win_rate":0.6,
+      "min_games":5
+    },
+    "Hangman":{
+      "task_id":6
+    },
+    "Log":{
+      "task_id":7,
+      "max_base":20,
+      "max_exponent":6,
+      "n_answers":3
+    },
+    "Typewriter":{
+      "task_id":8,
+      "n_words":10,
+      "sample_length":1000,
+      "base_delay":1,
+      "min_delay":1,
+      "max_delay":1.5,
+      "delay_coefficient":2,
+      "base_velocity":[0,-0.5],
+      "max_speed":2,
+      "update_frequency":60.0
+    },
+    "Minesweeper":{
+      "task_id":9,
+      "base_size":10,
+      "mine_ratio":0.15
+    }
+  },
+  "Exchange":{
+    "price_1":1,
+    "price_2":2,
+    "price_3":3,
+    "max_variance_factor":0.5,
+    "update_delay":5,
+    "price_history_length":50
+  },
+  "Wallet":{
+    "currency_1":0,
+    "currency_2":0,
+    "currency_3":0
+  },
+  "Rewards":{
+    "Reward 1":[2,2,10],
+    "Reward 2":[2,2,10],
+    "Reward 3":[8,0,9],
+    "reward_dict":{"1":[2,2,10], "2":[2,2,10], "3":[1,2,3,4]},
+    "reward_price_dict":{"1":{"1":20, "2":0, "3":0}, "2":{"1":20, "2":0, "3":0}, "3":{"1":0, "2":50, "3":50}}
+  },
+  "Market_Screen":{
+    "checking_frequency":2
+  },
+  "Main_Screen":{
+    "Currencies":{
+      "BW":["Beaver Whiskers",1],
+      "HHS":["Hare Hide Socks",2],
+      "JDF":["Jars of Duck Fat", 3]
+    }
+  }
+}

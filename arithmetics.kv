@@ -1,0 +1,31 @@
+<Arithmetics>:
+    cols: 1
+    problem_label: problem_label
+    text_input: text_input
+    hint_label: hint_label
+
+    Label:
+        text: 'Do some simple arithmetics'
+
+    GridLayout:
+        size_hint: 1, 0.2
+        cols: 2
+
+        Label:
+            id: problem_label
+            text: 'problem text'
+
+        TextInput:
+            id: text_input
+            hint_text: 'type solution here, press Enter to check if correct.'
+            input_filter: 'int'
+            multiline: False
+            focus: True
+            on_text_validate:
+                self.parent.parent.check_solution(attempt = int(self.text))
+                self.text = ''
+                self.parent.parent.schedule_focus()
+
+    Label:
+        id: hint_label
+        text: 'Type your solution into the input box, then press Enter'

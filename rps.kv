@@ -1,0 +1,37 @@
+<RPS>:
+    cols: 1
+    game_history: game_history
+    result_label: result_label
+
+    Label:
+        size_hint: 1, 0.1
+        text: f'Achieve a win rate of {self.parent.win_rate} in at least {self.parent.min_games} games !'
+
+    GridLayout:
+        cols: 2
+
+        GridLayout:
+            id: game_history
+            cols: 5
+
+        GridLayout:
+            cols: 1
+
+            Button:
+                text: 'Rock'
+                on_release:
+                    self.parent.parent.parent.play(symbol = self.text)
+
+            Button:
+                text: 'Paper'
+                on_release:
+                    self.parent.parent.parent.play(symbol = self.text)
+
+            Button:
+                text: 'Scissors'
+                on_release:
+                    self.parent.parent.parent.play(symbol = self.text)
+    Label:
+        id: result_label
+        size_hint: 1, 0.1
+        text: ''
